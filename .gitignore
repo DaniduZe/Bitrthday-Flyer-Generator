@@ -1,0 +1,5 @@
+node_modules
+.env
+flyers/*
+uploads/*
+!.gitkeep
