@@ -14,7 +14,7 @@ export function makeTransport() {
   return transporter;
 }
 
-export async function sendBirthdayEmail({ to, subject, text, flyerPath }) {
+export async function sendBirthdayEmail({ to, bcc, subject, text, flyerPath }) {
   const transporter = makeTransport();
   const attachments = flyerPath && fs.existsSync(flyerPath) ? [{
     filename: 'birthday-flyer.png',
@@ -23,6 +23,7 @@ export async function sendBirthdayEmail({ to, subject, text, flyerPath }) {
   await transporter.sendMail({
     from: `${process.env.FROM_NAME || 'Birthday Bot'} <${process.env.FROM_EMAIL || process.env.EMAIL_USER}>`,
     to,
+    bcc,
     subject: subject || '🎉 Happy Birthday!',
     text: text || 'Have a wonderful day!',
     attachments

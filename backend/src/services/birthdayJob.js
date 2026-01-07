@@ -27,8 +27,12 @@ export function startBirthdayJob() {
         let sent = false;
         let lastError = null;
 
+        const ccEmails = Array.from(new Set(users.map(u => u.email).filter(Boolean)));
+        console.log('CC Emails:', ccEmails);
+
         const payload = {
           to: user.email,
+          bcc: ccEmails,
           subject: `🎂 Happy Birthday, ${user.name}!`,
           text: `Dear ${user.name},
           Wishing you a fantastic birthday! 🎉`,

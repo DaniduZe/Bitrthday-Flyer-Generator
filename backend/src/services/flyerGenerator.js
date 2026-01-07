@@ -13,7 +13,7 @@ export async function generateFlyer({ name, dob, pictureUrl }) {
 
   try {
     // Background template path
-    const bgPath = path.join(__dirname, "..", "templates", "flyer_temp.png");
+    const bgPath = path.join(__dirname, "..", "templates", "WhatsApp Image 2026-01-06 at 12.20.33 PM.jpeg");
     const background = await Jimp.read(bgPath);
     background.cover(width, height);
 
@@ -38,7 +38,7 @@ export async function generateFlyer({ name, dob, pictureUrl }) {
 
     // Fonts
 
-    const fontName = await Jimp.loadFont(Jimp.FONT_SANS_64_WHITE);
+    const fontName = await Jimp.loadFont(Jimp.FONT_SANS_64_BLACK);
 
 
     // Place avatar (centered)
@@ -47,7 +47,7 @@ export async function generateFlyer({ name, dob, pictureUrl }) {
       const finalSize = Math.round(avatarSize * scale);
       const avatarScaled = avatar.clone().cover(finalSize, finalSize);
       const x = Math.round(width / 2 - finalSize / 2);
-      const y = Math.round(height / 2 - finalSize / 2 - 100);
+      const y = Math.round(height / 2 - finalSize / 2);
       background.composite(avatarScaled, x, y);
     }
 
@@ -55,7 +55,7 @@ export async function generateFlyer({ name, dob, pictureUrl }) {
     background.print(
       fontName,
       0,
-      height / 2 + 110,
+      height / 2 + 210,
       {
         text: name,
         alignmentX: Jimp.HORIZONTAL_ALIGN_CENTER,
